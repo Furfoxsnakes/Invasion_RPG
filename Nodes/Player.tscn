@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Nodes/Battler.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/NewStateMachine.cs" type="Script" id=3]
+[ext_resource path="res://Nodes/PlayerUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Weapon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/ScreenShake.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/ViewModelComponent/PlayerCamera.cs" type="Script" id=7]
+
+[node name="Player" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource( 2 )
+_playerCamera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="." index="0"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 7 )
+
+[node name="ScreenShake" parent="Camera2D" index="0" instance=ExtResource( 6 )]
+
+[node name="Weapon" parent="." index="3" instance=ExtResource( 5 )]
+BulletSpeed = 700.0
+_shotsPerSeconds = 4.0
+
+[node name="UI" parent="." index="4" instance=ExtResource( 4 )]
+
+[node name="StateMachine" parent="." index="5"]
+script = ExtResource( 3 )
+
+[editable path="UI"]
