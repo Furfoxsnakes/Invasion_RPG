@@ -29,6 +29,9 @@ public class Enemy : Battler
         AttackRange = GetNode<Area2D>("AttackRange");
         AttackRate = GetNode<Timer>("AttackRate");
         AttackRate.WaitTime = (60 / _attacksPerSeconds) / 60;
+
+        Stats[StatTypes.MHP] = 100;
+        Stats[StatTypes.HP] = Stats[StatTypes.MHP];
         
         StateMachine.ChangeState<EnemyIdleState>();
     }

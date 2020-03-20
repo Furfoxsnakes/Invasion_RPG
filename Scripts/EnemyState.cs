@@ -26,9 +26,8 @@ public class EnemyState : State
 
     protected override void ConnectSignals()
     {
-        var error = AggroRange.Connect("body_entered", this, nameof(OnBodyEnteredAggroRange));
+        AggroRange.Connect("body_entered", this, nameof(OnBodyEnteredAggroRange));
         AggroRange.Connect("body_exited", this, nameof(OnBodyExitedAggroRange));
-        GD.Print(error);
     }
 
     protected override void DisconnectSignals()

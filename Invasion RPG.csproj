@@ -81,7 +81,9 @@
     <Compile Include="Scripts\StateMachine.cs" />
     <Compile Include="Scripts\Stats.cs" />
     <Compile Include="Scripts\UI.cs" />
+    <Compile Include="Scripts\ViewModelComponent\Actor\PlayerUI.cs" />
     <Compile Include="Scripts\ViewModelComponent\Actor\Rank.cs" />
+    <Compile Include="Scripts\ViewModelComponent\EnemyUI.cs" />
     <Compile Include="Scripts\ViewModelComponent\PlayerCamera.cs" />
     <Compile Include="Scripts\ViewModelComponent\ScreenShake.cs" />
     <Compile Include="Scripts\Weapon.cs" />
