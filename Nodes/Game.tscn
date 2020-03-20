@@ -25,10 +25,10 @@ position = Vector2( 251, 261 )
 _playerCamera = NodePath("../YSort/Player/Camera2D")
 
 [node name="Enemy" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 155, 456 )
+position = Vector2( 345, 86 )
 
 [node name="Enemy2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 785, 421 )
+position = Vector2( 259, 497 )
 
 [node name="Enemy3" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 275, 58 )
+position = Vector2( 734, 259 )

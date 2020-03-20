@@ -30,7 +30,8 @@ public class State : Node
 
     public override void _ExitTree()
     {
-        DisconnectSignals();
+        // Disconnect from any signals when a scene is changed
+        //DisconnectSignals();
     }
 
     protected virtual void ConnectSignals()

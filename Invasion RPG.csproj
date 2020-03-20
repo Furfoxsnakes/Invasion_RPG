@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Battler.cs" />
     <Compile Include="Scripts\Enemy.cs" />
+    <Compile Include="Scripts\EnemyAttackState.cs" />
     <Compile Include="Scripts\EnemyChaseState.cs" />
     <Compile Include="Scripts\EnemyIdleState.cs" />
     <Compile Include="Scripts\EnemyState.cs" />

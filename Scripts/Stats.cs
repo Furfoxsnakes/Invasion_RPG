@@ -35,21 +35,25 @@ public class Stats : Node
     public void SetValue(StatTypes type, int value, bool allowException)
     {
         var oldValue = this[type];
+        
         if (value == oldValue) return;
 
         if (allowException)
         {
+            
             var exc = new ValueChangeException(oldValue, value);
 
             this.PostNotification(WillChangeNotification(type), exc);
 
             value = Mathf.FloorToInt(exc.GetModifiedValue());
 
-            if (exc.Toggle || value == oldValue) return;
+            if (!exc.Toggle || value == oldValue) return;
+            
         }
 
         _data[(int) type] = value;
 
         this.PostNotification(DidChangeNotification(type), oldValue);
+        
     }
 }

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using InvasionRPG.Scripts.Enums;
 
 public class PlayerIdleState : PlayerState
 {

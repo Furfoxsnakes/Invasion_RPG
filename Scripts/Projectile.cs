@@ -3,9 +3,9 @@ using System;
 
 public class Projectile : RigidBody2D
 {
-    private void _on_Projectile_body_entered(Node body)
+    private void _on_Projectile_body_entered(Battler battler)
     {
-        GD.Print(body is Enemy);
+        // Do damage to body that was hit
         QueueFree();
     }
 
