@@ -8,11 +8,7 @@ public class GamePausedState : GameState
     {
         GetTree().Paused = true;
         GameStateLabel.Text = "PAUSED";
-    }
-
-    public override void Exit()
-    {
-        GameStateLabel.Text = "";
+        UIContainer.Visible = true;
     }
 
     public override void HandleInput(InputEvent inputEvent)

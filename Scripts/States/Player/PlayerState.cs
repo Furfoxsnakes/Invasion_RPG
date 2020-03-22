@@ -5,26 +5,6 @@ public class PlayerState : State
 {
     protected Player Player => Parent as Player;
     protected StateMachine StateMachine => Player.StateMachine;
-    
-    public override void Enter()
-    {
-        
-    }
-
-    public override void Exit()
-    {
-        
-    }
-
-    public override void HandleInput(InputEvent inputEvent)
-    {
-        
-    }
-
-    public override void Update(float delta)
-    {
-        
-    }
 
     public Vector2 GetMovementVector()
     {

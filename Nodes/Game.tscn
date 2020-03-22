@@ -36,17 +36,44 @@ _playerCamera = NodePath("../YSort/Player/Camera2D")
 position = Vector2( 328, 76 )
 
 [node name="GameUI" type="CanvasLayer" parent="."]
+pause_mode = 2
 
-[node name="GameStateLabel" type="Label" parent="GameUI"]
+[node name="Container" type="VBoxContainer" parent="GameUI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.0
-margin_right = 20.0
-margin_bottom = 7.0
+margin_left = -135.5
+margin_top = -20.0
+margin_right = 135.5
+margin_bottom = 20.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 theme = ExtResource( 5 )
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GameStateLabel" type="Label" parent="GameUI/Container"]
+margin_right = 271.0
+margin_bottom = 16.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "GAME STATE LABEL"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="GameUI/Container"]
+margin_top = 26.0
+margin_right = 271.0
+margin_bottom = 48.0
+text = "RETSTART"
+
+[node name="QuitButton" type="Button" parent="GameUI/Container"]
+margin_top = 58.0
+margin_right = 271.0
+margin_bottom = 80.0
+text = "QUIT"

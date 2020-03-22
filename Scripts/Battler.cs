@@ -6,6 +6,7 @@ public class Battler : KinematicBody2D
 {
     public StateMachine StateMachine;
     public Stats Stats;
+    protected GameController GameController => GetTree().Root.GetNode<GameController>("Game");
     protected List<Battler> DamageSources = new List<Battler>();
 
     public override void _Ready()

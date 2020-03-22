@@ -6,7 +6,9 @@ public class GameActiveState : GameState
 {
     public override void Enter()
     {
+        base.Enter();
         GetTree().Paused = false;
+        UIContainer.Visible = false;
     }
 
     public override void HandleInput(InputEvent inputEvent)
