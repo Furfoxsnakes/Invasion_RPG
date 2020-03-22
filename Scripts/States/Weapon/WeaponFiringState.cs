@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using InvasionRPG.Scripts.Enums;
 
 public class WeaponFiringState : WeaponState
 {
@@ -16,6 +17,6 @@ public class WeaponFiringState : WeaponState
         base.HandleInput(inputEvent);
         
         if (inputEvent is InputEventMouseButton button)
-            if (!button.Pressed) StateMachine.ChangeState<WeaponIdleState>();
+            if (!button.Pressed) StateMachine.ChangeState<WeaponIdleState>(StateTypes.Weapon);
     }
 }

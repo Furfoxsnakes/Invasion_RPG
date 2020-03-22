@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using InvasionRPG.Scripts.Enums;
 
 public class EnemyChaseState : EnemyState
 {
@@ -10,7 +11,7 @@ public class EnemyChaseState : EnemyState
         Enemy.MoveAndSlide(direction * 50);
 
         if (AttackRange.OverlapsBody(Target))
-            StateMachine.ChangeState<EnemyAttackState>();
+            StateMachine.ChangeState<EnemyAttackState>(StateTypes.Enemy);
     }
 
     public override void Enter()
@@ -40,6 +41,6 @@ public class EnemyChaseState : EnemyState
 
     private void OnAggroTimeTimeout()
     {
-        StateMachine.ChangeState<EnemyIdleState>();
+        StateMachine.ChangeState<EnemyIdleState>(StateTypes.Enemy);
     }
 }

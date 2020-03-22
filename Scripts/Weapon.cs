@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using InvasionRPG.Scripts.Enums;
 
 public class Weapon : Node2D
 {
@@ -8,7 +9,7 @@ public class Weapon : Node2D
     [Export] private float _screenShakeTrauma = 0.25f;
     [Export] private float _shotsPerSeconds = 2;
 
-    public NewStateMachine StateMachine;
+    public StateMachine StateMachine;
     
     //TODO: Implement crosshair feedback for spread before it can be used
     /*
@@ -24,8 +25,8 @@ public class Weapon : Node2D
     
     public override void _Ready()
     {
-        StateMachine = GetNode<NewStateMachine>("StateMachine");
-        StateMachine.ChangeState<WeaponIdleState>();
+        StateMachine = GetNode<StateMachine>("StateMachine");
+        StateMachine.ChangeState<WeaponIdleState>(StateTypes.Weapon);
         FireRate = GetNode<Timer>("FireRate");
         _spawnPoint = GetNode<Position2D>("ProjectileSpawnPoint");
         FireRate.WaitTime = (60 / _shotsPerSeconds) / 60;
@@ -40,6 +41,7 @@ public class Weapon : Node2D
     public void Shoot()
     {
         var projectile = Projectile.Instance() as Projectile;
+        projectile.Source = Owner as Battler;
         GetTree().Root.AddChild(projectile);
         if (projectile != null)
         {

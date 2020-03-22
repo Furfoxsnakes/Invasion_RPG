@@ -4,7 +4,7 @@ using System;
 public class WeaponState : State
 {
     protected Weapon Weapon => Parent as Weapon;
-    protected NewStateMachine StateMachine => Weapon.StateMachine;
+    protected StateMachine StateMachine => Weapon.StateMachine;
     
     protected Timer FireRate => Weapon.FireRate;
 

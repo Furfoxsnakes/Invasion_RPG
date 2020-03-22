@@ -4,7 +4,7 @@ using System;
 public class PlayerState : State
 {
     protected Player Player => Parent as Player;
-    protected NewStateMachine StateMachine => Player.StateMachine;
+    protected StateMachine StateMachine => Player.StateMachine;
     
     public override void Enter()
     {

@@ -55,10 +55,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Battler.cs" />
     <Compile Include="Scripts\Enemy.cs" />
-    <Compile Include="Scripts\EnemyAttackState.cs" />
-    <Compile Include="Scripts\EnemyChaseState.cs" />
-    <Compile Include="Scripts\EnemyIdleState.cs" />
-    <Compile Include="Scripts\EnemyState.cs" />
+    <Compile Include="Scripts\Enums\StateTypes.cs" />
+    <Compile Include="Scripts\States\Enemy\EnemyAttackState.cs" />
+    <Compile Include="Scripts\States\Enemy\EnemyChaseState.cs" />
+    <Compile Include="Scripts\States\Enemy\EnemyIdleState.cs" />
+    <Compile Include="Scripts\States\Enemy\EnemyState.cs" />
     <Compile Include="Scripts\Enums\StatTypes.cs" />
     <Compile Include="Scripts\Exceptions\BaseException.cs" />
     <Compile Include="Scripts\Exceptions\Modifiers\AddValueModifier.cs" />
@@ -69,16 +70,18 @@
     <Compile Include="Scripts\Exceptions\Modifiers\MultiplyValueModifier.cs" />
     <Compile Include="Scripts\Exceptions\Modifiers\ValueModifier.cs" />
     <Compile Include="Scripts\Exceptions\ValueChangeException.cs" />
-    <Compile Include="Scripts\NewStateMachine.cs" />
+    <Compile Include="Scripts\GameController.cs" />
+    <Compile Include="Scripts\States\Game\GameActiveState.cs" />
+    <Compile Include="Scripts\States\Game\GameState.cs" />
+    <Compile Include="Scripts\StateMachine.cs" />
     <Compile Include="Scripts\NotificationCenter\NotificationCenter.cs" />
     <Compile Include="Scripts\NotificationCenter\NotificationExtensions.cs" />
     <Compile Include="Scripts\Player.cs" />
-    <Compile Include="Scripts\PlayerIdleState.cs" />
-    <Compile Include="Scripts\PlayerMoveState.cs" />
-    <Compile Include="Scripts\PlayerState.cs" />
+    <Compile Include="Scripts\States\Player\PlayerIdleState.cs" />
+    <Compile Include="Scripts\States\Player\PlayerMoveState.cs" />
+    <Compile Include="Scripts\States\Player\PlayerState.cs" />
     <Compile Include="Scripts\Projectile.cs" />
     <Compile Include="Scripts\State.cs" />
-    <Compile Include="Scripts\StateMachine.cs" />
     <Compile Include="Scripts\Stats.cs" />
     <Compile Include="Scripts\UI.cs" />
     <Compile Include="Scripts\ViewModelComponent\Actor\PlayerUI.cs" />
@@ -87,9 +90,9 @@
     <Compile Include="Scripts\ViewModelComponent\PlayerCamera.cs" />
     <Compile Include="Scripts\ViewModelComponent\ScreenShake.cs" />
     <Compile Include="Scripts\Weapon.cs" />
-    <Compile Include="Scripts\WeaponFiringState.cs" />
-    <Compile Include="Scripts\WeaponIdleState.cs" />
-    <Compile Include="Scripts\WeaponState.cs" />
+    <Compile Include="Scripts\States\Weapon\WeaponFiringState.cs" />
+    <Compile Include="Scripts\States\Weapon\WeaponIdleState.cs" />
+    <Compile Include="Scripts\States\Weapon\WeaponState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

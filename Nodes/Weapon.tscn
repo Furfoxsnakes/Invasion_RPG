@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Sprites/pistol.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Weapon.cs" type="Script" id=2]
-[ext_resource path="res://Scripts/NewStateMachine.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/StateMachine.cs" type="Script" id=3]
 [ext_resource path="res://Nodes/Projectile.tscn" type="PackedScene" id=4]
 
 [node name="Weapon" type="Node2D"]

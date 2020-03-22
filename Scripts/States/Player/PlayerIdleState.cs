@@ -9,6 +9,6 @@ public class PlayerIdleState : PlayerState
         var movement = GetMovementVector();
         
         if (movement != Vector2.Zero)
-            StateMachine.ChangeState<PlayerMoveState>();
+            StateMachine.ChangeState<PlayerMoveState>(StateTypes.Player);
     }
 }

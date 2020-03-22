@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using InvasionRPG.Scripts.Enums;
 
 public class PlayerMoveState : PlayerState
 {
@@ -10,6 +11,6 @@ public class PlayerMoveState : PlayerState
         Player.MoveAndCollide((movement * 200) * delta);
         
         if (movement == Vector2.Zero)
-            StateMachine.ChangeState<PlayerIdleState>();
+            StateMachine.ChangeState<PlayerIdleState>(StateTypes.Player);
     }
 }

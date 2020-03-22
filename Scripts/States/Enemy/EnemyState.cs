@@ -5,7 +5,7 @@ using System.Diagnostics;
 public class EnemyState : State
 {
     protected Enemy Enemy => Parent as Enemy;
-    protected Player Player => Enemy.Player;
+    protected Player Player => GameController.Player;
 
     protected Battler Target
     {
@@ -14,7 +14,7 @@ public class EnemyState : State
     }
     protected Area2D AggroRange => Enemy.AggroRange;
     protected Area2D AttackRange => Enemy.AttackRange;
-    protected NewStateMachine StateMachine => Enemy.StateMachine;
+    protected StateMachine StateMachine => Enemy.StateMachine;
 
     protected Vector2 Pos
     {

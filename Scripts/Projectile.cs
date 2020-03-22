@@ -3,9 +3,15 @@ using System;
 
 public class Projectile : RigidBody2D
 {
+    public Battler Source;
+    
     private void _on_Projectile_body_entered(Battler battler)
     {
-        // Do damage to body that was hit
+        if (battler is Enemy)
+        {
+            battler.TakeDamage(5, Source);
+        }
+        
         QueueFree();
     }
 

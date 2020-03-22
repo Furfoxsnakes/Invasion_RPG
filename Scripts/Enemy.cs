@@ -13,6 +13,7 @@ public class Enemy : Battler
     public Timer AggroTime;
     public Area2D AttackRange;
     public Battler Target;
+    public static readonly string EnemyDidDieNotification = "Enemy.DidDie";
     
     [Export] private float _attacksPerSeconds = 1;
     public Timer AttackRate;
@@ -30,14 +31,22 @@ public class Enemy : Battler
         AttackRate = GetNode<Timer>("AttackRate");
         AttackRate.WaitTime = (60 / _attacksPerSeconds) / 60;
 
-        Stats[StatTypes.MHP] = 100;
+        Stats[StatTypes.MHP] = 20;
         Stats[StatTypes.HP] = Stats[StatTypes.MHP];
+        Stats[StatTypes.EXP] = 10;
         
-        StateMachine.ChangeState<EnemyIdleState>();
+        StateMachine.ChangeState<EnemyIdleState>(StateTypes.Enemy);
     }
 
     public void Attack(Battler battler)
     {
-        battler.TakeDamage(5);
+        battler.TakeDamage(5, this);
+    }
+
+    public override void Die()
+    {
+        this.PostNotification(EnemyDidDieNotification, DamageSources);
+        StateMachine.CurrentState.Exit();
+        QueueFree();
     }
 }

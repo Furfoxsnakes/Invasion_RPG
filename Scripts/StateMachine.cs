@@ -1,39 +1,17 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using InvasionRPG.Scripts.Enums;
 
-public class StateMachine<T> : Node
+public class StateMachine : Node
 {
-    [Signal]
-    public delegate void StateChanged(State currentState);
-
-    [Export] private NodePath _startState;
-
-    protected T Controller;
-
-    protected Godot.Collections.Dictionary<string, State> StatesMap;
-    protected List<State> StatesStack;
-    protected State CurrentState;
-
-    protected bool IsActive
+    public State CurrentState
     {
-        get => _isActive;
-        set
-        {
-            _isActive = value;
-            SetPhysicsProcess(value);
-            SetProcessInput(value);
-            
-            if (!_isActive)
-            {
-                StatesStack = new List<State>();
-                CurrentState = null;
-            }
-        }
+        get => _currentState;
+        set => Transition(value);
     }
+    private State _currentState;
 
-    private bool _isActive;
+    private bool _inTransition;
 
     #region Godot
 
@@ -47,65 +25,42 @@ public class StateMachine<T> : Node
         CurrentState.Update(delta);
     }
 
-    public override void _Ready()
-    {
-        foreach (Node child in GetChildren())
-        {
-            child.Connect("Finished", this, "ChangeState");
-        }
-        
-        Initialize(GetNode<State>(_startState));
-        
-        AddState<PlayerState>();
-        GetState<PlayerState>();
-    }
-
     #endregion
 
-    #region Public
-
-    public void ChangeState(string stateName)
+    public void ChangeState<T>(StateTypes type) where T : State
     {
-        if (!_isActive) return;
+        CurrentState = GetState<T>(type);
+    }
 
-        CurrentState?.Exit();
-
-        if (stateName.ToLower() == "previous")
-            StatesStack.RemoveAt(0);
-        else
-            StatesStack.Insert(0, StatesMap[stateName]);
-
-        CurrentState = StatesStack.First();
-
-        CurrentState?.Enter();
+    private State GetState<T>(StateTypes type) where T : State
+    {
+        if (FindNode(typeof(T).Name, owned: false) is T state) return state;
         
-        this.PostNotification($"StateChanged", CurrentState);
-    }
-
-    #endregion
-    
-    private void Initialize(State startState)
-    {
-        IsActive = true;
-        StatesStack = new List<State> {startState};
-        CurrentState = startState;
-        CurrentState.Enter();
-        this.PostNotification($"StateChanged", CurrentState);
-    }
-
-    private void AddState<T>() where T : State
-    {
         var node = new Node();
         var stateName = typeof(T).Name;
         node.Name = stateName;
         AddChild(node);
-        node.SetScript(ResourceLoader.Load($"res://Scripts/{stateName}.cs"));
+        node.SetScript(ResourceLoader.Load($"res://Scripts/States/{type}/{stateName}.cs"));
+        state = GetNode<T>(stateName);
+
+        return state;
     }
 
-    private void GetState<T>() where T : State
+    private void Transition(State newState)
     {
-        var state = FindNode("PlayerState", owned: false) as T;
-        //GD.Print(state is null);
-        state.Enter();
+        if (_currentState == newState || _inTransition) return;
+
+        _inTransition = true;
+        
+        if (_currentState != null)
+            _currentState.Exit();
+
+        _currentState = newState;
+        
+        if (_currentState != null)
+            _currentState.Enter();
+
+        _inTransition = false;
+
     }
 }
