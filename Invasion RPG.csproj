@@ -72,6 +72,7 @@
     <Compile Include="Scripts\Exceptions\ValueChangeException.cs" />
     <Compile Include="Scripts\GameController.cs" />
     <Compile Include="Scripts\States\Game\GameActiveState.cs" />
+    <Compile Include="Scripts\States\Game\GamePausedState.cs" />
     <Compile Include="Scripts\States\Game\GameState.cs" />
     <Compile Include="Scripts\StateMachine.cs" />
     <Compile Include="Scripts\NotificationCenter\NotificationCenter.cs" />

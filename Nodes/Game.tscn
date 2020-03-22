@@ -12,6 +12,7 @@ script = ExtResource( 4 )
 _battlersPath = NodePath("Battlers")
 
 [node name="StateMachine" parent="." instance=ExtResource( 6 )]
+pause_mode = 2
 
 [node name="Nav" type="Navigation2D" parent="."]
 
@@ -34,9 +35,9 @@ _playerCamera = NodePath("../YSort/Player/Camera2D")
 [node name="Enemy" parent="Battlers" instance=ExtResource( 3 )]
 position = Vector2( 328, 76 )
 
-[node name="GameOver" type="CanvasLayer" parent="."]
+[node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="GameOver"]
+[node name="GameStateLabel" type="Label" parent="GameUI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -46,7 +47,6 @@ margin_top = -7.0
 margin_right = 20.0
 margin_bottom = 7.0
 theme = ExtResource( 5 )
-text = "GAME OVER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
