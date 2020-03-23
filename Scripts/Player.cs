@@ -6,6 +6,7 @@ using InvasionRPG.Scripts.Enums;
 public class Player : Battler
 {
     [Export] private NodePath _playerCamera;
+    public Rank Rank;
 
     public override void _EnterTree()
     {
@@ -18,22 +19,15 @@ public class Player : Battler
         base._ExitTree();
         this.RemoveObserver(OnEnemyDidDie, Enemy.EnemyDidDieNotification);
     }
-
-    private void OnEnemyDidDie(object sender, object args)
-    {
-        var enemy = sender as Enemy;
-        var damageSources = args as List<Battler>;
-        var enemyStats = enemy.Stats;
-        
-        if (damageSources.Contains(this))
-            GD.Print($"{Name} receives {enemyStats[StatTypes.EXP]} XP!");
-    }
-
+    
     public override void _Ready()
     {
         base._Ready();
-        Stats[StatTypes.MHP] = 100;
-        Stats[StatTypes.HP] = Stats[StatTypes.MHP];
+        Rank = GetNode<Rank>("Rank");
+        
+        Stats.SetValue(StatTypes.MHP, 100, false);
+        Stats.SetValue(StatTypes.HP, Stats[StatTypes.MHP], false);
+        Rank.Init(1);
         StateMachine.ChangeState<PlayerIdleState>(StateTypes.Player);
     }
 
@@ -41,4 +35,22 @@ public class Player : Battler
     {
         GameController.StateMachine.ChangeState<GameOverState>(StateTypes.Game);
     }
+
+    #region Notification handlers
+    
+    private void OnEnemyDidDie(object sender, object args)
+    {
+        var enemy = sender as Enemy;
+        var damageSources = args as List<Battler>;
+        var enemyStats = enemy.Stats;
+
+        if (damageSources.Contains(this))
+        {
+            Stats[StatTypes.EXP] += enemyStats[StatTypes.EXP];
+        }
+    }
+
+    #endregion
+    
+    
 }

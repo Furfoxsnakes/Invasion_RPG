@@ -8,7 +8,7 @@ public class Rank : Node
 {
     public const int MinLevel = 1;
     public const int MaxLevel = 255;
-    public const int MaxExperience = 999999;
+    public const int MaxExperience = 999999999;
 
     public int EXP
     {
@@ -24,8 +24,7 @@ public class Rank : Node
 
     public override void _Ready()
     {
-        _stats = GetNode<Stats>("Stats");
-
+        _stats = Owner.GetNode<Stats>("Stats");
     }
 
     public override void _EnterTree()
@@ -62,9 +61,16 @@ public class Rank : Node
         return lvl;
     }
 
-    private static int ExperienceForLevel(int lvl)
+    public static int ExperienceForLevel(int lvl)
     {
-        // TODO: figure how to clamp to a value between 0 - 1
-        return 0;
+        var levelPercent = (float) (lvl - MinLevel) / (MaxLevel - MinLevel);
+        return (int)EasingEquations.EaseInQuad(0, MaxExperience, levelPercent);
+    }
+
+    public void Init(int lvl)
+    {
+        _stats.SetValue(StatTypes.LVL, lvl, false);
+        _stats.SetValue(StatTypes.EXP, ExperienceForLevel(lvl), false);
+        _stats.PostNotification(Stats.DidChangeNotification(StatTypes.EXP));
     }
 }

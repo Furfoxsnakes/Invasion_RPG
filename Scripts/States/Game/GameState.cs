@@ -5,10 +5,10 @@ public class GameState : State
 {
     protected GameController Game => Parent as GameController;
     protected StateMachine StateMachine => Game.StateMachine;
-    protected Label GameStateLabel => Parent.GetNode<Label>("GameUI/Container/GameStateLabel");
-    protected Button RestartButton => Parent.GetNode<Button>("GameUI/Container/RestartButton");
-    protected Button QuitButton => Parent.GetNode<Button>("GameUI/Container/QuitButton");
-    protected Container UIContainer => Parent.GetNode<Container>("GameUI/Container");
+    protected Container UIContainer => Parent.GetNode<Container>("GameUI/GameStateContainer");
+    protected Label GameStateLabel => UIContainer.GetNode<Label>("GameStateLabel");
+    protected Button RestartButton => UIContainer.GetNode<Button>("RestartButton");
+    protected Button QuitButton => UIContainer.GetNode<Button>("QuitButton");
 
     protected bool IsGamePaused
     {

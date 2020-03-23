@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/UI_theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/Audio/click_001.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Scripts/ViewModelComponent/UIButton.cs" type="Script" id=3]
+
+[node name="UIButton" type="Button"]
+rect_min_size = Vector2( 300, 40 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource( 1 )
+text = "UI BUTTON"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )

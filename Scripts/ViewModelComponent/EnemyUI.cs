@@ -17,6 +17,6 @@ public class EnemyUI : UI
 
         if (stats.Owner != Owner) return;
 
-        _healthBar.Value = MathHelpers.Clamp01(stats[StatTypes.HP], stats[StatTypes.MHP]);
+        _healthBar.Value = (float)stats[StatTypes.HP] / stats[StatTypes.MHP];
     }
 }

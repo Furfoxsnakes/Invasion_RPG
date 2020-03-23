@@ -31,9 +31,9 @@ public class Enemy : Battler
         AttackRate = GetNode<Timer>("AttackRate");
         AttackRate.WaitTime = (60 / _attacksPerSeconds) / 60;
 
-        Stats[StatTypes.MHP] = 20;
-        Stats[StatTypes.HP] = Stats[StatTypes.MHP];
-        Stats[StatTypes.EXP] = 10;
+        Stats.SetValue(StatTypes.MHP, 20, false);
+        Stats.SetValue(StatTypes.HP, Stats[StatTypes.MHP], false);
+        Stats.SetValue(StatTypes.EXP, 10000, false);
         
         StateMachine.ChangeState<EnemyIdleState>(StateTypes.Enemy);
     }
