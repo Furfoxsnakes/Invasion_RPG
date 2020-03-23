@@ -4,11 +4,11 @@ using InvasionRPG.Scripts.Enums;
 
 public class EnemyUI : UI
 {
-    private ProgressBar _healthBar;
+    private TextureProgress _healthBar;
 
     public override void _Ready()
     {
-        _healthBar = GetNode<ProgressBar>("HealthBar");
+        _healthBar = GetNode<TextureProgress>("HealthBar");
     }
 
     protected override void OnHealthChange(object sender, object args)
@@ -16,7 +16,7 @@ public class EnemyUI : UI
         var stats = sender as Stats;
 
         if (stats.Owner != Owner) return;
-        
-        _healthBar.Value = (float)stats[StatTypes.HP] / stats[StatTypes.MHP];
+
+        _healthBar.Value = MathHelpers.Clamp01(stats[StatTypes.HP], stats[StatTypes.MHP]);
     }
 }

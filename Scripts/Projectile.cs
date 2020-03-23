@@ -19,4 +19,9 @@ public class Projectile : RigidBody2D
     {
         QueueFree();
     }
+
+    private void _on_VisibilityNotifier2D_viewport_exited(Viewport viewport)
+    {
+        QueueFree();
+    }
 }

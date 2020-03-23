@@ -32,7 +32,7 @@ public class Player : Battler
     public override void _Ready()
     {
         base._Ready();
-        Stats[StatTypes.MHP] = 10;
+        Stats[StatTypes.MHP] = 100;
         Stats[StatTypes.HP] = Stats[StatTypes.MHP];
         StateMachine.ChangeState<PlayerIdleState>(StateTypes.Player);
     }

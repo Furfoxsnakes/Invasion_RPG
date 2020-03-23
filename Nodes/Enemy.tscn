@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Nodes/Battler.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=2]
+[ext_resource path="res://Sprites/UI/grey_button00.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/ViewModelComponent/EnemyUI.cs" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -40,18 +41,22 @@ one_shot = true
 margin_left = -20.0
 margin_top = -40.0
 margin_right = 20.0
-margin_bottom = -30.0
+margin_bottom = -35.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="ProgressBar" parent="UI" index="0"]
+[node name="HealthBar" type="TextureProgress" parent="UI" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 max_value = 1.0
-value = 1.0
-percent_visible = false
+step = 0.01
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 1, 1, 1, 0.196078 )
+tint_progress = Color( 0.54902, 0.109804, 0.109804, 1 )
+nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
