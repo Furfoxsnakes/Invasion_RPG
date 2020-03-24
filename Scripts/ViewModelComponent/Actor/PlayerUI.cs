@@ -26,6 +26,13 @@ public class PlayerUI : UI
         this.AddObserver(OnLvlDidChange, Stats.DidChangeNotification(StatTypes.LVL));
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        this.RemoveObserver(OnExpDidChange, Stats.DidChangeNotification(StatTypes.EXP));
+        this.RemoveObserver(OnLvlDidChange, Stats.DidChangeNotification(StatTypes.LVL));
+    }
+
     private void OnLvlDidChange(object sender, object args)
     {
         var stats = sender as Stats;

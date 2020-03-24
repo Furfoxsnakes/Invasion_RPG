@@ -12,9 +12,17 @@ public class Stats : Node
         set => SetValue(s, value, true);
     }
 
+    public int this[int index]
+    {
+        get => _data[index];
+        set => SetValue((StatTypes) index, value, true);
+    }
+
     private int[] _data = new int[(int) StatTypes.Count];
     private static Dictionary<StatTypes, string> _willChangeNotifications = new Dictionary<StatTypes, string>();
     private static Dictionary<StatTypes, string> _didChangeNotifications = new Dictionary<StatTypes, string>();
+
+    public int[] Data => _data;
 
     public static string WillChangeNotification(StatTypes type)
     {

@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilemaps/Terrain.tres" type="TileSet" id=2]
 [ext_resource path="res://Nodes/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/GameController.cs" type="Script" id=4]
@@ -8,8 +7,6 @@
 [ext_resource path="res://Nodes/StateMachine.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GameStateLabel.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Nodes/UI/UIButton.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Sprites/UI/return.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/UI/exit.png" type="Texture" id=10]
 
 [node name="Game" type="Node"]
 script = ExtResource( 4 )
@@ -32,29 +29,29 @@ __meta__ = {
 
 [node name="Battlers" type="YSort" parent="."]
 
-[node name="Player" parent="Battlers" instance=ExtResource( 1 )]
-position = Vector2( 213, 303 )
-
 [node name="Enemy" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 328, 76 )
+position = Vector2( 860, 81 )
 
 [node name="Enemy2" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 506, 87 )
+position = Vector2( 862, 249 )
 
 [node name="Enemy3" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 761, 173 )
+position = Vector2( 811, 438 )
 
 [node name="Enemy4" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 829, 284 )
+position = Vector2( 573, 533 )
 
 [node name="Enemy5" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 754, 459 )
+position = Vector2( 543, 63 )
 
 [node name="Enemy6" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 543, 505 )
+position = Vector2( 373, 526 )
 
 [node name="Enemy7" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 288, 489 )
+position = Vector2( 476, 299 )
+
+[node name="Enemy8" parent="Battlers" instance=ExtResource( 3 )]
+position = Vector2( 133, 504 )
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -74,9 +71,8 @@ __meta__ = {
 }
 
 [node name="GameStateLabel" type="Label" parent="GameUI/GameStateContainer"]
-margin_top = -1.0
 margin_right = 1024.0
-margin_bottom = 49.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -89,22 +85,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
+[node name="NewGameButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
 margin_left = 362.0
 margin_top = 60.0
 margin_right = 662.0
 margin_bottom = 100.0
-text = "RESTART"
-icon = ExtResource( 9 )
-align = 0
-expand_icon = true
+text = "NEW GAME"
 
-[node name="QuitButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
+[node name="SaveButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
 margin_left = 362.0
 margin_top = 110.0
 margin_right = 662.0
 margin_bottom = 150.0
-text = "QUIT"
-icon = ExtResource( 10 )
-align = 0
+text = "SAVE GAME"
+
+[node name="LoadButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
+margin_left = 362.0
+margin_top = 160.0
+margin_right = 662.0
+margin_bottom = 200.0
+text = "LOAD GAME"
+
+[node name="RestartButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
+margin_left = 362.0
+margin_top = 210.0
+margin_right = 662.0
+margin_bottom = 250.0
+text = "RESTART"
 expand_icon = true
+
+[node name="QuitButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
+margin_left = 362.0
+margin_top = 260.0
+margin_right = 662.0
+margin_bottom = 300.0
+text = "QUIT"
+expand_icon = true
+[connection signal="pressed" from="GameUI/GameStateContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="GameUI/GameStateContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="GameUI/GameStateContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="pressed" from="GameUI/GameStateContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="GameUI/GameStateContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

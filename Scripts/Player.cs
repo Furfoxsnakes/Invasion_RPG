@@ -29,6 +29,7 @@ public class Player : Battler
         Stats.SetValue(StatTypes.HP, Stats[StatTypes.MHP], false);
         Rank.Init(1);
         StateMachine.ChangeState<PlayerIdleState>(StateTypes.Player);
+        AddToGroup("Persist");
     }
 
     public override void Die()
@@ -48,6 +49,17 @@ public class Player : Battler
         {
             Stats[StatTypes.EXP] += enemyStats[StatTypes.EXP];
         }
+    }
+    
+    public DataModel Save()
+    {
+        return new DataModel()
+        {
+            Filename = Filename,
+            Parent = GetParent().GetPath(),
+            Name = Name,
+            Stats = Stats.Data
+        };
     }
 
     #endregion

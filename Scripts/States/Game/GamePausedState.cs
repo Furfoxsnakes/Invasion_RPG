@@ -9,6 +9,7 @@ public class GamePausedState : GameState
         GetTree().Paused = true;
         GameStateLabel.Text = "PAUSED";
         UIContainer.Visible = true;
+        SaveGameButton.Visible = true;
     }
 
     public override void HandleInput(InputEvent inputEvent)
