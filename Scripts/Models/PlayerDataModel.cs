@@ -2,7 +2,7 @@ using Godot;
 using System;
 using InvasionRPG.Scripts.Enums;
 
-public class DataModel
+public class PlayerDataModel
 {
     public string Filename { get; set; }
     public string Parent { get; set; }

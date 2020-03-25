@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tilemaps/Terrain.tres" type="TileSet" id=2]
-[ext_resource path="res://Nodes/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/GameController.cs" type="Script" id=4]
 [ext_resource path="res://UI/UI_theme.tres" type="Theme" id=5]
 [ext_resource path="res://Nodes/StateMachine.tscn" type="PackedScene" id=6]
@@ -15,9 +14,9 @@ _battlersPath = NodePath("Battlers")
 [node name="StateMachine" parent="." instance=ExtResource( 6 )]
 pause_mode = 2
 
-[node name="Nav" type="Navigation2D" parent="."]
+[node name="Arena" type="Navigation2D" parent="."]
 
-[node name="TileMap" type="TileMap" parent="Nav"]
+[node name="TileMap" type="TileMap" parent="Arena"]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 48, 48 )
 cell_quadrant_size = 48
@@ -27,37 +26,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="SpawnPoints" type="Node" parent="Arena"]
+
+[node name="SpawnPoint" type="Position2D" parent="Arena/SpawnPoints"]
+position = Vector2( 931, 79 )
+
 [node name="Battlers" type="YSort" parent="."]
-
-[node name="Enemy" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 860, 81 )
-
-[node name="Enemy2" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 862, 249 )
-
-[node name="Enemy3" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 811, 438 )
-
-[node name="Enemy4" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 573, 533 )
-
-[node name="Enemy5" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 543, 63 )
-
-[node name="Enemy6" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 373, 526 )
-
-[node name="Enemy7" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 476, 299 )
-
-[node name="Enemy8" parent="Battlers" instance=ExtResource( 3 )]
-position = Vector2( 133, 504 )
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 pause_mode = 2
 
 [node name="GameStateContainer" type="VBoxContainer" parent="GameUI"]
-visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -107,6 +86,7 @@ margin_bottom = 200.0
 text = "LOAD GAME"
 
 [node name="RestartButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
+visible = false
 margin_left = 362.0
 margin_top = 210.0
 margin_right = 662.0
@@ -116,9 +96,9 @@ expand_icon = true
 
 [node name="QuitButton" parent="GameUI/GameStateContainer" instance=ExtResource( 8 )]
 margin_left = 362.0
-margin_top = 260.0
+margin_top = 210.0
 margin_right = 662.0
-margin_bottom = 300.0
+margin_bottom = 250.0
 text = "QUIT"
 expand_icon = true
 [connection signal="pressed" from="GameUI/GameStateContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]

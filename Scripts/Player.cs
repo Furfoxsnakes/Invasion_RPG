@@ -51,9 +51,9 @@ public class Player : Battler
         }
     }
     
-    public DataModel Save()
+    public PlayerDataModel Save()
     {
-        return new DataModel()
+        return new PlayerDataModel()
         {
             Filename = Filename,
             Parent = GetParent().GetPath(),

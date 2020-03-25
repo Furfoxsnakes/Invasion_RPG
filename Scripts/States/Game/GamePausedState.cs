@@ -10,6 +10,8 @@ public class GamePausedState : GameState
         GameStateLabel.Text = "PAUSED";
         UIContainer.Visible = true;
         SaveGameButton.Visible = true;
+        LoadGameButton.Visible = true;
+        NewGameButton.Visible = true;
     }
 
     public override void HandleInput(InputEvent inputEvent)

@@ -18,6 +18,9 @@ public class GameController : Node
 
     public void Start()
     {
+        if (Player != null)
+            Player.QueueFree();
+
         var playerScene = GD.Load<PackedScene>("res://Nodes/Player.tscn");
         Player = playerScene.Instance() as Player;
         GetNode(_battlersPath).AddChild(Player);
@@ -51,11 +54,6 @@ public class GameController : Node
 
     public void Load()
     {
-        if (Player != null)
-            Player.QueueFree();
-        
-        Start();
-        
         string jsonString = null;
         var saveGame = new File();
         var path = $"user://{Player.Name}.json";
@@ -69,7 +67,7 @@ public class GameController : Node
         }
         
         jsonString = saveGame.GetLine();
-        var playerData = JsonConvert.DeserializeObject<DataModel>(jsonString);
+        var playerData = JsonConvert.DeserializeObject<PlayerDataModel>(jsonString);
 
         for (var i = 0; i < (int) StatTypes.Count; ++i)
         {
@@ -81,13 +79,14 @@ public class GameController : Node
 
     private void _on_NewGameButton_pressed()
     {
-        Start();
-        StateMachine.ChangeState<GameActiveState>(StateTypes.Game);
+        //Start();
+        //StateMachine.ChangeState<GameActiveState>(StateTypes.Game);
+        GetTree().ChangeScene("res://Nodes/MainMenu.tscn");
     }
 
     private void _on_LoadButton_pressed()
     {
-        
+        Start();
         Load();
         StateMachine.ChangeState<GameActiveState>(StateTypes.Game);
     }

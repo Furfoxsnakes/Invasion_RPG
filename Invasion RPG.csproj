@@ -62,7 +62,9 @@
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\Enums\StateTypes.cs" />
     <Compile Include="Scripts\Extensions\MathHelpers.cs" />
-    <Compile Include="Scripts\Models\DataModel.cs" />
+    <Compile Include="Scripts\MainMenuController.cs" />
+    <Compile Include="Scripts\Models\PlayerDataModel.cs" />
+    <Compile Include="Scripts\Models\GameData.cs" />
     <Compile Include="Scripts\States\Enemy\EnemyAttackState.cs" />
     <Compile Include="Scripts\States\Enemy\EnemyChaseState.cs" />
     <Compile Include="Scripts\States\Enemy\EnemyIdleState.cs" />
