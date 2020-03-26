@@ -8,7 +8,6 @@ public class Enemy : Battler
 {
     public Navigation2D Arena;
     private List<Vector2> _path;
-    public Player Player;
     public Area2D AggroRange;
     public Timer AggroTime;
     public Area2D AttackRange;

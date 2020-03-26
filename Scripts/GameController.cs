@@ -7,7 +7,8 @@ public class GameController : Node
 {
     public StateMachine StateMachine;
     [Export] private NodePath _battlersPath;
-    public static Player Player;
+    public Player Player;
+    public GameData GameData => GetTree().Root.GetNode<GameData>("GameData");
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -29,59 +30,34 @@ public class GameController : Node
 
     public void Save()
     {
-        var saveGame = new File();
-        var path = $"user://{Player.Name}.json";
-        
-        var err = saveGame.Open(path, File.ModeFlags.Write);
+        var err = FileManager.SavePlayerData(Player);
 
         if (err != Error.Ok)
         {
-            GD.Print($"Unable to open file at path: {path}. {err}");
-            return;
+            GD.PrintErr($"Unable to save game: {err}");
         }
-
-        foreach (Node node in GetTree().GetNodesInGroup("Persist"))
-        {
-            if (node is Player player)
-            {
-                var dataModel = player.Save();
-                var json = JsonConvert.SerializeObject(dataModel);
-                saveGame.StoreLine(json);
-                saveGame.Close();
-            }
-        }
+        else
+            GD.Print($"Save game successful: {err}");
     }
 
     public void Load()
     {
-        string jsonString = null;
-        var saveGame = new File();
-        var path = $"user://{Player.Name}.json";
-
-        var err = saveGame.Open(path, File.ModeFlags.Read);
-
-        if (err != Error.Ok)
-        {
-            GD.Print($"Unable to open file at path: {path}. {err}");
-            return;
-        }
+        var playerData = GameData.PlayerData;
         
-        jsonString = saveGame.GetLine();
-        var playerData = JsonConvert.DeserializeObject<PlayerDataModel>(jsonString);
+        if (GameData.PlayerData == null)
+            return;
+        
+        GD.Print(playerData);
 
         for (var i = 0; i < (int) StatTypes.Count; ++i)
         {
             Player.Stats.SetValue((StatTypes)i, playerData.Stats[i], false);
         }
-        
-        saveGame.Close();
     }
 
     private void _on_NewGameButton_pressed()
     {
-        //Start();
-        //StateMachine.ChangeState<GameActiveState>(StateTypes.Game);
-        GetTree().ChangeScene("res://Nodes/MainMenu.tscn");
+        this.ChangeToScene("res://Nodes/MainMenu.tscn");
     }
 
     private void _on_LoadButton_pressed()

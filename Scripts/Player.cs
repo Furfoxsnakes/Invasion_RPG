@@ -36,6 +36,17 @@ public class Player : Battler
     {
         GameController.StateMachine.ChangeState<GameOverState>(StateTypes.Game);
     }
+    
+    public PlayerDataModel Save()
+    {
+        return new PlayerDataModel()
+        {
+            Filename = Filename,
+            Parent = GetParent().GetPath(),
+            Name = GameController.GameData.PlayerData.Name,
+            Stats = Stats.Data
+        };
+    }
 
     #region Notification handlers
     
@@ -49,17 +60,6 @@ public class Player : Battler
         {
             Stats[StatTypes.EXP] += enemyStats[StatTypes.EXP];
         }
-    }
-    
-    public PlayerDataModel Save()
-    {
-        return new PlayerDataModel()
-        {
-            Filename = Filename,
-            Parent = GetParent().GetPath(),
-            Name = Name,
-            Stats = Stats.Data
-        };
     }
 
     #endregion

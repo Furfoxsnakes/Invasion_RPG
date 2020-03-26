@@ -66,6 +66,28 @@ margin_top = 186.0
 margin_right = 450.0
 margin_bottom = 226.0
 text = "LOAD GAME"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+visible = true
+margin_left = 197.0
+margin_top = 39.0
+margin_right = 837.0
+margin_bottom = 519.0
+rect_min_size = Vector2( 640, 480 )
+popup_exclusive = true
+window_title = "Open a Save Game"
+mode_overrides_title = false
+mode = 0
+access = 1
+filters = PoolStringArray( "*.save" )
+current_dir = "user://"
+current_path = "user://"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="text_changed" from="VBoxContainer/InputBox" to="." method="_on_InputBox_text_changed"]
 [connection signal="text_entered" from="VBoxContainer/InputBox" to="." method="_on_InputBox_text_entered"]
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_LoadGameButton_pressed"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]

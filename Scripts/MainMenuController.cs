@@ -34,6 +34,25 @@ public class MainMenuController : Node
         {
             Name = playerName
         };
-        GetTree().ChangeScene("res://Nodes/Game.tscn");
+        this.ChangeToScene("res://Nodes/Game.tscn");
+    }
+
+    private void _on_LoadGameButton_pressed()
+    {
+        GetNode<FileDialog>("FileDialog").Popup_();
+    }
+
+    private void _on_FileDialog_file_selected(string path)
+    {
+        var playerData = FileManager.LoadPlayerData(path);
+
+        if (playerData == null)
+        {
+            GD.PrintErr($"Unable load load data from {path}.");
+            return;
+        }
+
+        _gameData.PlayerData = playerData;
+        this.ChangeToScene("res://Nodes/Game.tscn");
     }
 }

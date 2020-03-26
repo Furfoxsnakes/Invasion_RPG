@@ -16,6 +16,7 @@ public class GameBeginState : GameState
         SaveGameButton.Visible = false;
         LoadGameButton.Visible = false;
         UIContainer.Visible = true;
+        InitPlayerData();
         BeginCountdown();
     }
 
@@ -36,7 +37,6 @@ public class GameBeginState : GameState
         if (_count == 0)
         {
             _countdownTimer.Stop();
-            Game.Start();
             StateMachine.ChangeState<GameActiveState>(StateTypes.Game);
         }
     }
@@ -44,5 +44,17 @@ public class GameBeginState : GameState
     private void UpdateCountdown()
     {
         GameStateLabel.Text = $"Get ready {PlayerData.Name}. Starting in...{_count}";
+    }
+
+    private void InitPlayerData()
+    {
+        var playerData = GameData.PlayerData;
+        
+        Game.Start();
+        
+        for (var i = 0; i < (int) StatTypes.Count; ++i)
+        {
+            Game.Player.Stats.SetValue((StatTypes)i, playerData.Stats[i], false);
+        }
     }
 }

@@ -10,7 +10,7 @@ public class GamePausedState : GameState
         GameStateLabel.Text = "PAUSED";
         UIContainer.Visible = true;
         SaveGameButton.Visible = true;
-        LoadGameButton.Visible = true;
+        LoadGameButton.Visible = false;
         NewGameButton.Visible = true;
     }
 

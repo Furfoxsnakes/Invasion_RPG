@@ -5,7 +5,6 @@ using System.Diagnostics;
 public class EnemyState : State
 {
     protected Enemy Enemy => Parent as Enemy;
-    protected Player Player => GameController.Player;
 
     protected Battler Target
     {
@@ -21,7 +20,7 @@ public class EnemyState : State
         get => Enemy.Position;
         set => Enemy.Position = value;
     }
-    protected float DistanceToPlayer => Enemy.Position.DistanceTo(Player.Position);
+    protected float DistanceToPlayer => Enemy.Position.DistanceTo(Target.Position);
     protected Navigation2D Arena => Enemy.Arena;
 
     protected override void ConnectSignals()
