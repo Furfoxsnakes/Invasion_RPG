@@ -21,7 +21,7 @@ public class EnemyState : State
         set => Enemy.Position = value;
     }
     protected float DistanceToPlayer => Enemy.Position.DistanceTo(Target.Position);
-    protected Navigation2D Arena => Enemy.Arena;
+    protected ArenaController Arena => Enemy.Arena;
 
     protected override void ConnectSignals()
     {

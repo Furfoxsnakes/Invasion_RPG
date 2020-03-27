@@ -8,5 +8,8 @@ public class GameOverState : GameState
         IsGamePaused = true;
         GameStateLabel.Text = "GAME OVER";
         UIContainer.Visible = true;
+        QuitButton.Visible = true;
+        RestartButton.Visible = true;
+        Game.Save();
     }
 }

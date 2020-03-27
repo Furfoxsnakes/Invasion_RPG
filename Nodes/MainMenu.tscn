@@ -68,7 +68,6 @@ margin_bottom = 226.0
 text = "LOAD GAME"
 
 [node name="FileDialog" type="FileDialog" parent="."]
-visible = true
 margin_left = 197.0
 margin_top = 39.0
 margin_right = 837.0

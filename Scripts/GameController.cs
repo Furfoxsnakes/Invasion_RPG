@@ -25,7 +25,12 @@ public class GameController : Node
         var playerScene = GD.Load<PackedScene>("res://Nodes/Player.tscn");
         Player = playerScene.Instance() as Player;
         GetNode(_battlersPath).AddChild(Player);
-        Player.Position = new Vector2(100, 100);
+        Player.Position = GetNode<Position2D>("Arena/SpawnPoints/PlayerSpawn").Position;
+
+        foreach (EnemySpawnPoint point in GetTree().GetNodesInGroup("MonsterSpawnPoints"))
+        {
+            point.Start();
+        }
     }
 
     public void Save()
@@ -60,13 +65,6 @@ public class GameController : Node
         this.ChangeToScene("res://Nodes/MainMenu.tscn");
     }
 
-    private void _on_LoadButton_pressed()
-    {
-        Start();
-        Load();
-        StateMachine.ChangeState<GameActiveState>(StateTypes.Game);
-    }
-    
     private void _on_SaveButton_pressed()
     {
         Save();
@@ -74,11 +72,13 @@ public class GameController : Node
 
     private void _on_RestartButton_pressed()
     {
+        GameData.PlayerData = FileManager.LoadPlayerData(GameData.SaveFilePath);
         GetTree().ReloadCurrentScene();
     }
 
     private void _on_QuitButton_pressed()
     {
+        Save();
         GetTree().Quit();
     }
 }

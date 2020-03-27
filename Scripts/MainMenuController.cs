@@ -53,6 +53,7 @@ public class MainMenuController : Node
         }
 
         _gameData.PlayerData = playerData;
+        _gameData.SaveFilePath = path;
         this.ChangeToScene("res://Nodes/Game.tscn");
     }
 }

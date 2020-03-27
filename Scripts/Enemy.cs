@@ -6,7 +6,7 @@ using InvasionRPG.Scripts.Enums;
 
 public class Enemy : Battler
 {
-    public Navigation2D Arena;
+    public ArenaController Arena;
     private List<Vector2> _path;
     public Area2D AggroRange;
     public Timer AggroTime;
@@ -20,9 +20,9 @@ public class Enemy : Battler
     public override void _Ready()
     {
         base._Ready();
-        
+
         // Assign nodes/components
-        Arena = GetNode<Navigation2D>("../../Arena");
+        Arena = GameController.GetNode<ArenaController>("Arena");
         AggroRange = GetNode<Area2D>("AggroRange");
         AggroTime = GetNode<Timer>("AggroTime");
         AttackRange = GetNode<Area2D>("AttackRange");

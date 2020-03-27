@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\ArenaController.cs" />
     <Compile Include="Scripts\Battler.cs" />
     <Compile Include="Scripts\Common\EasingEquations.cs" />
     <Compile Include="Scripts\Common\FileManager.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Scripts\ViewModelComponent\Actor\Rank.cs" />
     <Compile Include="Scripts\ViewModelComponent\EnemyUI.cs" />
     <Compile Include="Scripts\ViewModelComponent\LevelUpLabel.cs" />
+    <Compile Include="Scripts\ViewModelComponent\EnemySpawnPoint.cs" />
     <Compile Include="Scripts\ViewModelComponent\PlayerCamera.cs" />
     <Compile Include="Scripts\ViewModelComponent\ScreenShake.cs" />
     <Compile Include="Scripts\ViewModelComponent\UIButton.cs" />
